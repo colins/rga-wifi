@@ -1,0 +1,14 @@
+
+config opennds
+	option faskey '1038a33f3871827593a90d55be800660b1d8a33c7baafd36df4767070ee23bd9'
+	option enabled '1'
+	option gatewayinterface 'br-lan'
+	option login_option_enabled '3'
+	option themespec_path '/usr/lib/opennds/theme_multi_tier_portal.sh'
+	option gatewayname 'Business Guest WiFi'
+	option sessiontimeout '60'
+	option uploadrate '512'
+	option downloadrate '2048'
+	option max_page_size '16384'
+	list trustedmac '80:69:1a:74:c4:53'
+
