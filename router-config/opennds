@@ -11,4 +11,6 @@ config opennds
 	option downloadrate '2048'
 	option max_page_size '16384'
 	list trustedmac '80:69:1a:74:c4:53'
+	option gatewayfqdn 'disable'
+	list users_to_router 'allow tcp port 80'
 
