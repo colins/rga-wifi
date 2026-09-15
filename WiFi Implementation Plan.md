@@ -121,9 +121,13 @@ Or download backups via **System > Backup / Flash Firmware** in LuCI.
 
 ## Step-by-Step Implementation Roadmap
 
-1. [ ] Configure TP-Link Deco S4R mesh nodes into **Access Point Mode**.
-2. [ ] SSH into OpenWrt router and install `openNDS`, `luci-app-sqm`, and `git`.
-3. [ ] Initialize Git repository in `/etc` on OpenWrt for configuration checkpoints.
-4. [ ] Configure basic openNDS captive portal redirect and default rate limits.
-5. [ ] Build or deploy FAS web application (handling email form, Stripe Checkout, and coupon validation).
-6. [ ] Test free tier email signup, paid tier Stripe checkout, and coupon redemption workflows.
+1. [x] Configure TP-Link Deco S4R mesh nodes into **Access Point Mode** (Deco units bridged, MAC addresses passed through to OpenWrt).
+2. [x] SSH into OpenWrt router and install `opennds` and `luci-app-sqm`.
+3. [x] Initialize Git repository & snapshot tracking with sysupgrade backups (`router-backups/`).
+4. [x] Configure basic openNDS captive portal redirect and SQM `cake` rate limits on WAN.
+5. [x] Build and deploy multi-tier FAS captive portal with:
+   - **Free Access Tier**: Email validation, 60 minutes session, 2 Mbps download / 512 kbps upload rate cap.
+   - **Coupon Redemption Tier**: 24-hour pass codes, full unthrottled speed.
+   - **Paid / Stripe Tier**: Counter QR / Stripe checkout webhook bridge (`fas_server.py`).
+   - **Coupon CLI Manager**: `/usr/bin/manage_coupons` for generating printed batch codes and auditing logins.
+6. [x] Test portal page rendering, coupon redemption engine, and sysupgrade checkpoint commits.
