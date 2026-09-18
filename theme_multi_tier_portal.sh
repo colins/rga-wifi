@@ -34,40 +34,47 @@ header() {
 	<title>$gatewayname - WiFi Portal</title>
 	<style>
 		* { box-sizing: border-box; margin: 0; padding: 0; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif; }
-		body { background: #0f172a; color: #f8fafc; display: flex; justify-content: center; padding: 20px 12px; }
-		.card { background: #1e293b; border: 1px solid #334155; border-radius: 14px; width: 100%; max-width: 480px; padding: 24px; box-shadow: 0 10px 25px -5px rgba(0,0,0,0.5); }
-		.logo { text-align: center; margin-bottom: 20px; }
-		.logo h1 { font-size: 1.5rem; color: #38bdf8; letter-spacing: -0.5px; }
-		.logo p { font-size: 0.85rem; color: #94a3b8; margin-top: 4px; }
-		.alert { padding: 12px 14px; border-radius: 8px; margin-bottom: 18px; font-size: 0.85rem; }
+		body { background: #0f172a; color: #f8fafc; display: flex; justify-content: center; padding: 24px 12px; }
+		.card { background: #1e293b; border: 1px solid #334155; border-radius: 16px; width: 100%; max-width: 480px; padding: 28px 24px; box-shadow: 0 20px 25px -5px rgba(0,0,0,0.5), 0 8px 10px -6px rgba(0,0,0,0.5); }
+		.logo { text-align: center; margin-bottom: 24px; }
+		.logo-icon { display: inline-flex; align-items: center; justify-content: center; width: 52px; height: 52px; border-radius: 14px; background: linear-gradient(135deg, #e6007e 0%, #9333ea 100%); color: #ffffff; box-shadow: 0 10px 15px -3px rgba(230, 0, 126, 0.35); margin-bottom: 12px; }
+		.logo-icon svg { width: 30px; height: 30px; fill: currentColor; }
+		.logo h1 { font-size: 1.5rem; font-weight: 800; color: #ffffff; letter-spacing: -0.5px; }
+		.logo .tagline { font-size: 0.75rem; font-weight: 700; color: #ff66c4; text-transform: uppercase; letter-spacing: 1.5px; margin-top: 4px; }
+		.alert { padding: 12px 14px; border-radius: 10px; margin-bottom: 18px; font-size: 0.85rem; }
 		.alert-error { background: #450a0a; border: 1px solid #991b1b; color: #fca5a5; }
 		.alert-success { background: #052e16; border: 1px solid #166534; color: #86efac; }
-		.section-box { background: #0f172a; border: 1px solid #334155; border-radius: 10px; padding: 16px; margin-bottom: 16px; }
-		.section-title { font-size: 1rem; font-weight: 600; color: #f1f5f9; display: flex; justify-content: space-between; align-items: center; margin-bottom: 6px; }
-		.badge { font-size: 0.72rem; padding: 2px 8px; border-radius: 9999px; font-weight: 600; }
-		.badge-free { background: #1e293b; color: #38bdf8; border: 1px solid #38bdf8; }
-		.badge-paid { background: #eab308; color: #0f172a; }
-		.section-desc { font-size: 0.8rem; color: #94a3b8; margin-bottom: 14px; line-height: 1.35; }
-		label { display: block; font-size: 0.78rem; text-transform: uppercase; letter-spacing: 0.5px; color: #94a3b8; margin-bottom: 6px; }
-		input[type=text], input[type=email] { width: 100%; padding: 10px 12px; background: #1e293b; border: 1px solid #475569; border-radius: 6px; color: #fff; font-size: 0.95rem; margin-bottom: 12px; }
-		input[type=text]:focus, input[type=email]:focus { outline: none; border-color: #38bdf8; }
-		.btn { width: 100%; padding: 11px; border: none; border-radius: 6px; font-size: 0.9rem; font-weight: 600; cursor: pointer; transition: opacity 0.2s; }
-		.btn-primary { background: #0284c7; color: #fff; }
-		.btn-primary:hover { background: #0369a1; }
-		.btn-accent { background: #eab308; color: #0f172a; }
-		.btn-accent:hover { background: #ca8a04; }
-		.btn-outline { background: transparent; border: 1px solid #475569; color: #cbd5e1; margin-top: 8px; }
-		.btn-outline:hover { background: #1e293b; }
-		.footer { text-align: center; margin-top: 20px; font-size: 0.75rem; color: #64748b; }
-		.footer a { color: #38bdf8; text-decoration: none; }
-		.terms-text { max-height: 200px; overflow-y: auto; background: #0f172a; padding: 12px; border-radius: 6px; font-size: 0.78rem; line-height: 1.4; color: #cbd5e1; margin-bottom: 14px; }
+		.section-box { background: #0f172a; border: 1px solid #334155; border-radius: 12px; padding: 18px; margin-bottom: 16px; transition: border-color 0.2s; }
+		.section-box:focus-within { border-color: #e6007e; }
+		.section-title { font-size: 1.05rem; font-weight: 700; color: #f8fafc; display: flex; justify-content: space-between; align-items: center; margin-bottom: 6px; }
+		.badge { font-size: 0.72rem; padding: 3px 10px; border-radius: 9999px; font-weight: 700; letter-spacing: 0.3px; }
+		.badge-free { background: rgba(230, 0, 126, 0.15); color: #ff66c4; border: 1px solid rgba(230, 0, 126, 0.4); }
+		.badge-paid { background: linear-gradient(135deg, #f59e0b 0%, #ea580c 100%); color: #0f172a; font-weight: 800; }
+		.section-desc { font-size: 0.82rem; color: #94a3b8; margin-bottom: 14px; line-height: 1.4; }
+		label { display: block; font-size: 0.78rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.5px; color: #cbd5e1; margin-bottom: 6px; }
+		input[type=text], input[type=email] { width: 100%; padding: 11px 14px; background: #0f172a; border: 1px solid #475569; border-radius: 8px; color: #fff; font-size: 0.95rem; margin-bottom: 14px; transition: border-color 0.15s, box-shadow 0.15s; }
+		input[type=text]:focus, input[type=email]:focus { outline: none; border-color: #e6007e; box-shadow: 0 0 0 3px rgba(230, 0, 126, 0.25); }
+		.btn { width: 100%; padding: 12px; border: none; border-radius: 8px; font-size: 0.92rem; font-weight: 700; cursor: pointer; transition: transform 0.1s, opacity 0.2s, box-shadow 0.2s; }
+		.btn:active { transform: scale(0.98); }
+		.btn-primary { background: linear-gradient(135deg, #e6007e 0%, #d81b60 100%); color: #fff; box-shadow: 0 4px 14px rgba(230, 0, 126, 0.35); }
+		.btn-primary:hover { opacity: 0.95; box-shadow: 0 6px 18px rgba(230, 0, 126, 0.45); }
+		.btn-accent { background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%); color: #0f172a; font-weight: 800; box-shadow: 0 4px 14px rgba(245, 158, 11, 0.35); }
+		.btn-accent:hover { opacity: 0.95; }
+		.btn-outline { background: transparent; border: 1px solid #475569; color: #94a3b8; margin-top: 8px; font-weight: 500; }
+		.btn-outline:hover { background: #0f172a; color: #cbd5e1; border-color: #64748b; }
+		.footer { text-align: center; margin-top: 24px; font-size: 0.75rem; color: #64748b; }
+		.footer a { color: #ff66c4; text-decoration: none; }
+		.terms-text { max-height: 200px; overflow-y: auto; background: #0f172a; padding: 14px; border-radius: 8px; font-size: 0.78rem; line-height: 1.4; color: #cbd5e1; margin-bottom: 14px; border: 1px solid #334155; }
 	</style>
 </head>
 <body>
 <div class=\"card\">
 	<div class=\"logo\">
+		<div class=\"logo-icon\">
+			<svg viewBox=\"0 0 24 24\"><path d=\"M12 2L10.5 5.5L8 3L8.5 7L5 6L6.5 9.5L2 10L5.5 12L2 14L6.5 14.5L5 18L8.5 17L8 21L10.5 18.5L12 22L13.5 18.5L16 21L15.5 17L19 18L17.5 14.5L22 14L18.5 12L22 10L17.5 9.5L19 6L15.5 7L16 3L13.5 5.5L12 2Z\"/></svg>
+		</div>
 		<h1>$gatewayname</h1>
-		<p>Select your WiFi access tier</p>
+		<p class=\"tagline\">Resilience Gymnastics Academy</p>
 	</div>
 "
 }
@@ -77,6 +84,7 @@ footer() {
 	echo "
 	<div class=\"footer\">
 		<p>&copy; $year $gatewayname &bull; High-Speed Guest Network</p>
+		<p style=\"margin-top: 4px;\"><a href=\"https://rgagymnast.com\" target=\"_blank\" rel=\"noopener noreferrer\">rgagymnast.com</a></p>
 	</div>
 </div>
 </body>
@@ -85,25 +93,8 @@ footer() {
 	exit 0
 }
 
-# Main splash sequence router
-generate_splash_sequence() {
-	init_storage
-
-	if [ "$terms" = "yes" ]; then
-		terms_page
-		footer
-	fi
-
-	if [ ! -z "$action_type" ]; then
-		handle_submission
-		footer
-	fi
-
-	login_selection_page
-	footer
-}
-
 login_selection_page() {
+	header
 	if [ ! -z "$error_msg" ]; then
 		echo "<div class=\"alert alert-error\">$error_msg</div>"
 	fi
@@ -244,6 +235,7 @@ handle_coupon_tier() {
 }
 
 display_success_page() {
+	header
 	title_text="$1"
 	body_text="$2"
 	originurl=$(printf "${originurl//%/\\x}")
@@ -262,6 +254,7 @@ display_success_page() {
 }
 
 terms_page() {
+	header
 	echo "
 	<div class=\"section-box\">
 		<div class=\"section-title\"><span>Terms of Service</span></div>
@@ -278,6 +271,24 @@ terms_page() {
 	"
 }
 
+# Main splash sequence router
+generate_splash_sequence() {
+	init_storage
+
+	if [ "$terms" = "yes" ]; then
+		terms_page
+		footer
+	fi
+
+	if [ ! -z "$action_type" ]; then
+		handle_submission
+		footer
+	fi
+
+	login_selection_page
+	footer
+}
+
 # Theme registration
 ndscustomparams=""
 ndscustomimages=""
@@ -287,3 +298,8 @@ ndsparamlist="$ndsparamlist $ndscustomparams $ndscustomimages $ndscustomfiles"
 additionalthemevars="action_type user_email coupon_code terms"
 fasvarlist="$fasvarlist $additionalthemevars"
 userinfo="$title"
+
+# If executed directly from command line for testing
+if [ "$1" = "run" ] || [ -z "$libopennds_version" ]; then
+	generate_splash_sequence
+fi
