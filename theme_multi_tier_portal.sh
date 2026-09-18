@@ -115,7 +115,7 @@ login_selection_page() {
 			<span>Free Access</span>
 			<span class=\"badge badge-free\">Standard</span>
 		</div>
-		<p class=\"section-desc\">60 minutes of complimentary WiFi (2 Mbps speed cap). Ideal for general browsing and messaging.</p>
+		<p class=\"section-desc\">60 minutes of complimentary WiFi (2 Mbps download speed, uncapped upload). Ideal for general browsing and messaging.</p>
 		<form action=\"/opennds_preauth/\" method=\"get\">
 			<input type=\"hidden\" name=\"fas\" value=\"$fas\">
 			<input type=\"hidden\" name=\"action_type\" value=\"free_tier\">
@@ -126,36 +126,28 @@ login_selection_page() {
 	</div>
 	"
 
-	# 2. PAID TIER / COUPON REDEMPTION
+	# 2. COUPON REDEMPTION
 	echo "
 	<div class=\"section-box\">
 		<div class=\"section-title\">
-			<span>Premium Pass & Coupons</span>
-			<span class=\"badge badge-paid\">Fastest</span>
+			<span>Redeem Pass Coupon</span>
+			<span class=\"badge badge-paid\">Full Speed</span>
 		</div>
-		<p class=\"section-desc\">Full uncapped network speed for 24 hours. Redeem a pass coupon from the front desk or purchase access.</p>
+		<p class=\"section-desc\">Enter your unique pass coupon code for high-speed uncapped access.</p>
 		<form action=\"/opennds_preauth/\" method=\"get\">
 			<input type=\"hidden\" name=\"fas\" value=\"$fas\">
 			<input type=\"hidden\" name=\"action_type\" value=\"coupon_tier\">
-			<label for=\"coupon_code\">Coupon or Pass Code</label>
+			<label for=\"coupon_code\">Coupon Code</label>
 			<input type=\"text\" id=\"coupon_code\" name=\"coupon_code\" placeholder=\"Enter pass code (e.g. VIP24H)\" required>
 			<button type=\"submit\" class=\"btn btn-accent\">Redeem Pass (Full Speed)</button>
 		</form>
 	</div>
-	"
 
-	# 3. ONLINE PURCHASE INSTRUCTIONS / STRIPE
-	echo "
-	<div class=\"section-box\">
-		<div class=\"section-title\">
-			<span>Need a Premium Pass?</span>
-			<span class=\"badge badge-paid\">\$3.00 / Day</span>
-		</div>
-		<p class=\"section-desc\">Ask our front desk staff for a printed daily pass coupon, or scan our counter QR code to pay securely via Stripe.</p>
+	<div style=\"text-align: center; margin-top: 10px;\">
 		<form action=\"/opennds_preauth/\" method=\"get\">
 			<input type=\"hidden\" name=\"fas\" value=\"$fas\">
 			<input type=\"hidden\" name=\"terms\" value=\"yes\">
-			<button type=\"submit\" class=\"btn btn-outline\">Read Terms of Service</button>
+			<button type=\"submit\" class=\"btn btn-outline\" style=\"width: auto; padding: 6px 18px; font-size: 0.8rem;\">Terms of Service</button>
 		</form>
 	</div>
 	"
@@ -184,9 +176,9 @@ handle_free_tier() {
 	echo "$now | FREE | email=$user_email | mac=$clientmac | ip=$clientip" >> "$LOGINS_FILE"
 
 	# Configure Free Tier Limits:
-	# 60 minutes duration, 512 kbps upload (~0.5 Mbps), 2048 kbps download (~2.0 Mbps)
+	# 60 minutes duration, upload uncapped (0 = no limit), 2048 kbps download (~2.0 Mbps)
 	session_length="60"
-	upload_rate="512"
+	upload_rate="0"
 	download_rate="2048"
 	upload_quota="0"
 	download_quota="0"
@@ -195,7 +187,7 @@ handle_free_tier() {
 	userinfo="tier=free, email=$user_email"
 	auth_log
 
-	display_success_page "Free Access Activated" "You are connected with Standard speed for 60 minutes."
+	display_success_page "Free Access Activated" "You are connected with Standard download speed (2 Mbps) and uncapped upload for 60 minutes."
 }
 
 handle_coupon_tier() {

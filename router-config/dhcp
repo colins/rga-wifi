@@ -34,6 +34,7 @@ config dhcp 'lan'
 	list ra_flags 'managed-config'
 	list ra_flags 'other-config'
 	list dhcp_option_force '114,http://status.client'
+	list dhcp_option_force '114,http://192.168.1.1:2050'
 
 config dhcp 'wan'
 	option interface 'wan'
@@ -55,4 +56,11 @@ config host
 	option name 'deco-S4'
 	option ip '192.168.1.217'
 	list mac '5c:62:8b:ad:c6:80'
+
+config dhcp 'private'
+	option interface 'private'
+	option start '100'
+	option limit '150'
+	option leasetime '12h'
+	option dhcpv4 'server'
 

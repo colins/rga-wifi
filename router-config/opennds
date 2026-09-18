@@ -7,7 +7,7 @@ config opennds
 	option themespec_path '/usr/lib/opennds/theme_multi_tier_portal.sh'
 	option gatewayname 'Business Guest WiFi'
 	option sessiontimeout '60'
-	option uploadrate '512'
+	option uploadrate '0'
 	option downloadrate '2048'
 	option max_page_size '16384'
 	list trustedmac '80:69:1a:74:c4:53'
