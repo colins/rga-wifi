@@ -115,7 +115,7 @@ login_selection_page() {
 			<span>Free Access</span>
 			<span class=\"badge badge-free\">Standard</span>
 		</div>
-		<p class=\"section-desc\">60 minutes of complimentary WiFi (2 Mbps download speed, uncapped upload). Ideal for general browsing and messaging.</p>
+		<p class=\"section-desc\">60 minutes of complimentary WiFi (2 Mbps download & upload speed cap). Ideal for general browsing and messaging.</p>
 		<form action=\"/opennds_preauth/\" method=\"get\">
 			<input type=\"hidden\" name=\"fas\" value=\"$fas\">
 			<input type=\"hidden\" name=\"action_type\" value=\"free_tier\">
@@ -176,9 +176,9 @@ handle_free_tier() {
 	echo "$now | FREE | email=$user_email | mac=$clientmac | ip=$clientip" >> "$LOGINS_FILE"
 
 	# Configure Free Tier Limits:
-	# 60 minutes duration, upload uncapped (0 = no limit), 2048 kbps download (~2.0 Mbps)
+	# 60 minutes duration, 2048 kbps upload (~2.0 Mbps), 2048 kbps download (~2.0 Mbps)
 	session_length="60"
-	upload_rate="0"
+	upload_rate="2048"
 	download_rate="2048"
 	upload_quota="0"
 	download_quota="0"
@@ -187,7 +187,7 @@ handle_free_tier() {
 	userinfo="tier=free, email=$user_email"
 	auth_log
 
-	display_success_page "Free Access Activated" "You are connected with Standard download speed (2 Mbps) and uncapped upload for 60 minutes."
+	display_success_page "Free Access Activated" "You are connected with Standard speed (2 Mbps download and upload) for 60 minutes."
 }
 
 handle_coupon_tier() {
