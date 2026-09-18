@@ -5,7 +5,7 @@ config opennds
 	option gatewayinterface 'br-lan'
 	option login_option_enabled '3'
 	option themespec_path '/usr/lib/opennds/theme_multi_tier_portal.sh'
-	option gatewayname 'Business Guest WiFi'
+	option gatewayname 'RGA Guest WiFi'
 	option sessiontimeout '60'
 	option uploadrate '2048'
 	option downloadrate '2048'
@@ -13,4 +13,5 @@ config opennds
 	list trustedmac '80:69:1a:74:c4:53'
 	option gatewayfqdn 'disable'
 	list users_to_router 'allow tcp port 80'
+	option enable_serial_number_suffix '0'
 
