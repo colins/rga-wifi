@@ -4,6 +4,13 @@ Welcome to Resilience Gymnastics Academy! Complimentary Wi-Fi is available for p
 
 ---
 
+<p align="center">
+  <img src="guest_wifi_qr.png" width="240" alt="Scan to Connect to RGA Guest WiFi" /><br>
+  <strong>📷 Scan with your phone's camera to join instantly</strong>
+</p>
+
+---
+
 ### **Network Name (SSID):**
 > ## **RGA Guest WiFi**
 
@@ -14,9 +21,9 @@ Welcome to Resilience Gymnastics Academy! Complimentary Wi-Fi is available for p
 
 ### **How to Connect:**
 
-1. **Select Network:** Open your device's Wi-Fi settings and tap **RGA Guest WiFi**.
+1. **Scan or Select:** Scan the QR code above or select **RGA Guest WiFi** in your device's Wi-Fi settings.
 2. **Open Portal:** Wait for the welcome screen to pop up.  
-   *(If the screen doesn't pop up automatically, open your browser and go to **neverssl.com** or **rgagymnast.com**).*
+   *(If the screen doesn't pop up automatically, open any browser and visit **neverssl.com** or **rgagymnast.com**).*
 3. **Activate Access:** 
    - Enter your email address and tap **"Connect for Free"** for **60 minutes** of complimentary access.
    - **Have an Event / Day Pass?** Enter your pass code under **"Redeem Pass Coupon"** for high-speed access.
