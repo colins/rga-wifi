@@ -1,0 +1,335 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>RGA Guest Wi-Fi Sign</title>
+  <style>
+    @page {
+      size: letter portrait;
+      margin: 0.35in 0.45in;
+    }
+    *, *::before, *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      color: #0f172a;
+      background: #ffffff;
+      line-height: 1.35;
+      -webkit-print-color-adjust: exact;
+      print-color-adjust: exact;
+    }
+    .sheet {
+      width: 100%;
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+    
+    /* Header */
+    .header {
+      text-align: center;
+      padding: 6px 0 14px 0;
+      border-bottom: 3px solid #e6007e;
+    }
+    .header-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 11px;
+      font-weight: 800;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      color: #e6007e;
+      background: #fdf2f8;
+      border: 1px solid #fbcfe8;
+      padding: 4px 12px;
+      border-radius: 9999px;
+      margin-bottom: 8px;
+    }
+    .header h1 {
+      font-size: 26px;
+      font-weight: 900;
+      letter-spacing: -0.5px;
+      color: #0f172a;
+      line-height: 1.15;
+      margin-bottom: 6px;
+    }
+    .header h1 span {
+      color: #e6007e;
+    }
+    .header p {
+      font-size: 13.5px;
+      color: #475569;
+    }
+
+    /* Main Grid: QR Code + Credentials */
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 210px 1fr;
+      gap: 20px;
+      align-items: center;
+      background: #f8fafc;
+      border: 1.5px solid #e2e8f0;
+      border-radius: 16px;
+      padding: 16px 20px;
+      margin-top: 14px;
+    }
+    .qr-container {
+      text-align: center;
+      background: #ffffff;
+      padding: 12px 12px 10px 12px;
+      border-radius: 12px;
+      border: 1.5px solid #cbd5e1;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+    }
+    .qr-container img {
+      width: 175px;
+      height: 175px;
+      display: block;
+      margin: 0 auto 6px auto;
+      image-rendering: pixelated;
+    }
+    .qr-caption {
+      font-size: 11px;
+      font-weight: 700;
+      color: #0f172a;
+      line-height: 1.25;
+    }
+
+    .credentials {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+    .cred-card {
+      background: #ffffff;
+      border: 1.5px solid #cbd5e1;
+      border-radius: 12px;
+      padding: 12px 16px;
+      border-left: 6px solid #e6007e;
+    }
+    .cred-card.secondary {
+      border-left-color: #64748b;
+    }
+    .cred-label {
+      font-size: 10.5px;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      color: #64748b;
+      margin-bottom: 3px;
+    }
+    .cred-val {
+      font-size: 22px;
+      font-weight: 900;
+      color: #0f172a;
+      letter-spacing: -0.3px;
+    }
+    .cred-val-sub {
+      font-size: 13px;
+      font-weight: 600;
+      color: #334155;
+    }
+    .cred-val-sub em {
+      font-weight: 500;
+      color: #64748b;
+    }
+
+    /* Steps Section */
+    .section-title {
+      font-size: 14px;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      color: #0f172a;
+      margin: 14px 0 8px 0;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .section-title::after {
+      content: "";
+      flex: 1;
+      height: 1px;
+      background: #e2e8f0;
+    }
+
+    .steps-container {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      gap: 12px;
+    }
+    .step-box {
+      background: #f8fafc;
+      border: 1px solid #e2e8f0;
+      border-radius: 12px;
+      padding: 12px 12px;
+      position: relative;
+    }
+    .step-num {
+      width: 24px;
+      height: 24px;
+      border-radius: 50%;
+      background: #e6007e;
+      color: #ffffff;
+      font-size: 12px;
+      font-weight: 800;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 8px;
+    }
+    .step-box h4 {
+      font-size: 13px;
+      font-weight: 800;
+      color: #0f172a;
+      margin-bottom: 4px;
+    }
+    .step-box p {
+      font-size: 11.5px;
+      color: #475569;
+      line-height: 1.35;
+    }
+    .step-box .highlight {
+      font-weight: 700;
+      color: #0f172a;
+    }
+    .step-box .fallback-url {
+      display: inline-block;
+      margin-top: 4px;
+      font-size: 11px;
+      background: #e2e8f0;
+      padding: 1px 6px;
+      border-radius: 4px;
+      color: #0f172a;
+      font-weight: 600;
+    }
+
+    /* Tips & Troubleshooting */
+    .tips-box {
+      background: #eff6ff;
+      border: 1px solid #bfdbfe;
+      border-radius: 12px;
+      padding: 10px 14px;
+      margin-top: 12px;
+    }
+    .tips-title {
+      font-size: 11.5px;
+      font-weight: 800;
+      color: #1e3a8a;
+      text-transform: uppercase;
+      letter-spacing: 0.8px;
+      margin-bottom: 4px;
+    }
+    .tips-list {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      gap: 10px;
+      list-style: none;
+    }
+    .tips-list li {
+      font-size: 10.5px;
+      color: #1e40af;
+      line-height: 1.3;
+    }
+    .tips-list li strong {
+      color: #1e3a8a;
+      display: block;
+      margin-bottom: 1px;
+    }
+
+    /* Footer */
+    .footer {
+      text-align: center;
+      padding-top: 10px;
+      margin-top: 10px;
+      border-top: 1px solid #e2e8f0;
+      font-size: 10.5px;
+      color: #64748b;
+    }
+    .footer a {
+      color: #e6007e;
+      text-decoration: none;
+      font-weight: 700;
+    }
+  </style>
+</head>
+<body>
+  <div class="sheet">
+    <!-- Header -->
+    <header class="header">
+      <div class="header-badge">📶 Complimentary Guest Wi-Fi</div>
+      <h1>Welcome to <span>Resilience Gymnastics Academy</span></h1>
+      <p>High-speed wireless internet access is available for all parents, guests, and visitors.</p>
+    </header>
+
+    <!-- QR & SSID Details -->
+    <div class="hero-grid">
+      <div class="qr-container">
+        <img src="guest_wifi_qr.png" alt="Scan to Connect to RGA Guest WiFi" />
+        <div class="qr-caption">📷 Scan with your phone's camera to join instantly</div>
+      </div>
+      <div class="credentials">
+        <div class="cred-card">
+          <div class="cred-label">Network Name (SSID)</div>
+          <div class="cred-val">RGA Guest WiFi</div>
+        </div>
+        <div class="cred-card secondary">
+          <div class="cred-label">Password / Security</div>
+          <div class="cred-val-sub"><strong>None</strong> <em>(Open network with captive portal login)</em></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- How to Connect -->
+    <div>
+      <div class="section-title">How to Connect</div>
+      <div class="steps-container">
+        <div class="step-box">
+          <div class="step-num">1</div>
+          <h4>Scan or Select</h4>
+          <p>Scan the QR code above or select <span class="highlight">RGA Guest WiFi</span> in your device Wi-Fi settings.</p>
+        </div>
+        <div class="step-box">
+          <div class="step-num">2</div>
+          <h4>Open Portal</h4>
+          <p>Wait for the welcome screen. If it doesn't appear, open your browser and visit: <br><span class="fallback-url">neverssl.com</span> or <span class="fallback-url">rgagymnast.com</span></p>
+        </div>
+        <div class="step-box">
+          <div class="step-num">3</div>
+          <h4>Activate Access</h4>
+          <p>Enter your email and tap <span class="highlight">"Connect for Free"</span> for <strong>60 minutes</strong> of access.<br>Have an Event Pass? Enter your code under <span class="highlight">"Redeem Pass Coupon"</span>.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Troubleshooting Tips -->
+    <div class="tips-box">
+      <div class="tips-title">💡 Quick Tips &amp; Troubleshooting</div>
+      <ul class="tips-list">
+        <li>
+          <strong>Need More Time?</strong>
+          When your 60-min session expires, simply reconnect to RGA Guest WiFi and tap connect again.
+        </li>
+        <li>
+          <strong>Portal Not Loading?</strong>
+          Toggle Wi-Fi off and back on, or choose "Forget Network" and reconnect.
+        </li>
+        <li>
+          <strong>Need Assistance?</strong>
+          Please check in with the front desk for questions or event access passes!
+        </li>
+      </ul>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+      Resilience Gymnastics Academy &bull; 6180 East Warren Ave, Denver, CO &bull; <a href="https://rgagymnast.com">rgagymnast.com</a>
+    </footer>
+  </div>
+</body>
+</html>
