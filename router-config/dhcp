@@ -20,7 +20,7 @@ config dnsmasq
 	option ednspacket_max '1232'
 	option filter_aaaa '0'
 	option filter_a '0'
-	list address '/status.client/192.168.1.1'
+	list address '/status.client/10.10.0.1'
 
 config dhcp 'lan'
 	option interface 'lan'
@@ -34,7 +34,7 @@ config dhcp 'lan'
 	list ra_flags 'managed-config'
 	list ra_flags 'other-config'
 	list dhcp_option_force '114,http://status.client'
-	list dhcp_option_force '114,http://192.168.1.1:2050'
+	list dhcp_option_force '114,http://10.10.0.1:2050'
 
 config dhcp 'wan'
 	option interface 'wan'
@@ -49,12 +49,12 @@ config odhcpd 'odhcpd'
 	option hostsdir '/tmp/hosts'
 
 config host
-	option ip '192.168.1.125'
+	option ip '10.10.0.125'
 	list mac '5c:62:8b:ad:c6:24'
 
 config host
 	option name 'deco-S4'
-	option ip '192.168.1.217'
+	option ip '10.10.0.217'
 	list mac '5c:62:8b:ad:c6:80'
 
 config dhcp 'private'

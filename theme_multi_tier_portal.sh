@@ -25,6 +25,9 @@ init_storage() {
 }
 
 header() {
+	if [ -z "$gatewayname" ]; then
+		gatewayname="RGA Guest WiFi"
+	fi
 	gatewayurl=$(printf "${gatewayurl//%/\\x}")
 	echo "<!DOCTYPE html>
 <html>
@@ -80,6 +83,9 @@ header() {
 }
 
 footer() {
+	if [ -z "$gatewayname" ]; then
+		gatewayname="RGA Guest WiFi"
+	fi
 	year=$(date +'%Y')
 	echo "
 	<div class=\"footer\">
